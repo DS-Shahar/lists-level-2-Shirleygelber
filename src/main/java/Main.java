@@ -1,26 +1,23 @@
-package listLevel2;
-
-import java.util.Scanner;
-
+package ListsLevelTwo;
+import ListsLevelTwo.Node;
 public class Main {
-    public static Scanner sc = new Scanner(System.in);
-
+   // public static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
         int[] arr1 = {10, 20, 30, 40, 50, 60, 70};
         int[] arr2 = {1, 2, 3, 4, 5, 2, 6, 7};
-        int[] arr3 = {1, 3, 4, 5, 1, 2, 3, 2, 3};
+   
         Node<Integer> L1 = buildList(arr);
         Node<Integer> L2 = buildList(arr1);
         Node<Integer> L3 = buildList(arr2);
-        Node<Integer> L4 = buildList(arr3);
+    
         
         System.out.println(ex1(L1, L2));
         System.out.println(bubbleSort_ex2(L1));
         System.out.println(distancesBetweenNum(L3, 2));
         System.out.println("the list without the same values: " + diffValues(L3));
         System.out.println(delSameValuesL(L3));
-        System.out.println(higherListUp(L4));
+      
     }
 
     public static Node<Integer> buildList(int[] arr) {
@@ -92,8 +89,7 @@ public class Main {
     	        Node<Integer> current = L1;
     	        int distance = 0;
     	        int cDistance = 0;
-    	        //int prevValue = -1;
-
+    	     
     	        while (current != null) {
     	            if (current.getValue() == num) {
     	            	cDistance += distance;
@@ -101,7 +97,6 @@ public class Main {
     	            } else {
     	                distance++;
     	            }
-    	            //prevValue = current.getValue();
     	            current = current.getNext();
     	        }
 
@@ -129,29 +124,20 @@ public class Main {
 
     	    public static Node<Integer> delSameValuesL(Node<Integer> head) {
     	        Node<Integer> current = head;
-    	        Node<Integer> prev = null;
-
-    	        while (current != null) {
-    	            Node<Integer> temp = current.getNext();
-    	            while (temp != null && current.getValue().equals(temp.getValue())){
-    	                temp = temp.getNext();
-    	            }
-    	            if (prev != null && prev.getValue().equals(current.getValue())){
-    	                prev.setNext(temp);
-    	            } else {
-    	                prev = current;
-    	            }
-    	            current = temp;
+    	        Node<Integer> runner = current;
+    	        
+    	        if(head==null||head.getNext()==null) {
+    	        	return head;
     	        }
-
+    	        while (current != null) {
+    	        	while(runner.getNext()!=null) {
+    	        		if(runner.getValue().equals(head.getValue())) {
+    	        			runner.setNext(runner.getNext().getNext());
+    	        		}
+    	        		runner = runner.getNext();
+    	        	}
+    	        	current = current.getNext();
+    	        }
     	        return head;
     	    }
-    	
-
-	public static Node<Integer> higherListUp(Node<Integer> head){
-		Node<Integer> dummy = new Node<>(-1);
-	    Node<Integer> current = dummy;
-	    int counterUp = 0;
-	    
-	}
 	}
