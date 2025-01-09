@@ -139,5 +139,36 @@ public class Main {
     	        	current = current.getNext();
     	        }
     	        return head;
+		    
     	    }
+	package Recursion;
+
+public class Main {
+	 public static void main(String[] args) { 
+	 int [] arr = {4,2,4,4,5};
+	 Node<Integer>head= buildList(arr);
+	System.out.print( ifDiffValues(head, head.getNext(),head.getNext()));
+	 }
+	 
+	public static Node<Integer> buildList(int[] arr) {
+        Node<Integer> head = new Node<>(arr[0]);
+        Node<Integer> prev = head;
+        for (int i = 1; i < arr.length; i++) {
+            Node<Integer> p = new Node<>(arr[i]);
+            prev.setNext(p);
+            prev = p;
+        }
+        return head;
+    }
+	public static boolean ifDiffValues(Node<Integer> head, Node<Integer> current,Node<Integer> current1) {
+		if (!head.hasNext())
+			return true;
+		if(head.getValue().equals(current.getValue()))
+		return false;
+		else if (current.hasNext()) {
+			current=current.getNext();
+		}
+		return ifDiffValues(head.getNext(), current1.getNext(),current1.getNext());
+		}
+	}
 	}
